@@ -16,6 +16,7 @@ class Order(models.Model):
     total_price = models.FloatField()
     status = models.CharField(max_length=255)
     user = models.ForeignKey(AppUser, on_delete=models.CASCADE)
+    products = models.ManyToManyField(Product)
 
     def __str__(self):
         return f"order: {self.id} user: {self.user.username}"

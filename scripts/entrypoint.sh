@@ -68,8 +68,6 @@ do
 done
 
 echo "MySQL is ready. Running migrations..."
-
-# makemigrations da eseguire SOLO la prima volta
 python manage.py makemigrations --noinput
 python manage.py migrate --noinput
 
@@ -80,4 +78,4 @@ exec gunicorn eoq.wsgi:application \
   --threads 2 \
   --timeout 60
 
-echo "Container for tirociniosmart-app started successfully"
+echo "Container for eoq-app started successfully"

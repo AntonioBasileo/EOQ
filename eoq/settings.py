@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'security.middleware.jwt_middleware.JWTAuthenticationMiddleware',
-    'security.middleware.MaliciousFileUploadMiddleware',
+    'security.middleware.malicious_file_middleware.MaliciousFileUploadMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]

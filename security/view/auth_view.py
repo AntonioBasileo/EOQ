@@ -84,7 +84,7 @@ def register_user(request, group_name: str, permissions: list[str]):
         try:
             user = User.objects.create_user(username=username, password=password)
             group, _ = Group.objects.get_or_create(name=group_name)
-            group.permissions = _resolve_or_create_permissions(permissions)
+            group.permissions.set(_resolve_or_create_permissions(permissions))
             user.groups.add(group)
         except Exception as e:
             return Response({"detail": f"Errore durante la registrazione: {str(e)}"}, status=HTTP_400_BAD_REQUEST)

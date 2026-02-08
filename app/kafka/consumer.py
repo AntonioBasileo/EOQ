@@ -11,8 +11,8 @@ consumer = KafkaConsumer(
     enable_auto_commit=os.getenv('KAFKA_ENABLE_AUTO_COMMIT'),
     value_deserializer=lambda v: json.loads(v.decode('utf-8')),
     key_deserializer=lambda k: k.decode('utf-8') if k else None,
-    max_poll_records=os.getenv('KAFKA_MAX_POLL_RECORDS'),
-    consumer_timeout_ms=os.getenv('KAFKA_CONSUMER_TIMEOUT_MS'),
+    max_poll_records=int(os.getenv('KAFKA_MAX_POLL_RECORDS')),
+    consumer_timeout_ms=int(os.getenv('KAFKA_CONSUMER_TIMEOUT_MS')),
 )
 
 for msg in consumer:
