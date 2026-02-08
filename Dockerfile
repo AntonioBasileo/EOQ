@@ -16,7 +16,6 @@ COPY app ./app
 COPY security ./security
 COPY eoq ./eoq
 COPY manage.py ./manage.py
-COPY templates ./templates
 COPY requirements.txt ./requirements.txt
 COPY scripts ./scripts
 
