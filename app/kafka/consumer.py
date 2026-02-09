@@ -1,10 +1,11 @@
 from kafka import KafkaConsumer
+from kafka.structs import TopicPartition
+
 import json, os
 
 from app.dto.dto import OrderWriteSerializer
 
 consumer = KafkaConsumer(
-    os.getenv('KAFKA_TOPIC'),
     bootstrap_servers=[os.environ.get('KAFKA_BOOTSTRAP_SERVERS')],
     group_id=os.getenv('KAFKA_GROUP_ID'),
     auto_offset_reset=os.getenv('KAFKA_AUTO_OFFSET_RESET'),
@@ -14,6 +15,10 @@ consumer = KafkaConsumer(
     max_poll_records=int(os.getenv('KAFKA_MAX_POLL_RECORDS')),
     consumer_timeout_ms=int(os.getenv('KAFKA_CONSUMER_TIMEOUT_MS')),
 )
+
+# Assegna il consumer alla partizione 1
+topic_partition = TopicPartition(os.getenv('KAFKA_TOPIC'), 1)
+consumer.assign([topic_partition])
 
 for msg in consumer:
     serializer = OrderWriteSerializer(data=msg.value)

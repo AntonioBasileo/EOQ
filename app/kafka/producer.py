@@ -15,7 +15,8 @@ def send(key, value):
     producer.send(
         os.getenv('KAFKA_TOPIC'),
         key=key,
-        value=value
+        value=value,
+        partition=1
     )
 
     producer.flush()
