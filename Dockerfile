@@ -12,12 +12,7 @@ COPY requirements.txt ./
 # Utente non-root
 RUN addgroup --system eoq && adduser --system --ingroup eoq eoq-user
 
-COPY app ./app
-COPY security ./security
-COPY eoq ./eoq
-COPY manage.py ./manage.py
-COPY requirements.txt ./requirements.txt
-COPY scripts ./scripts
+COPY . .
 
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt
